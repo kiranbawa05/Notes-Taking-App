@@ -1,0 +1,50 @@
+*{
+    padding:0;
+    margin:0;
+}
+body{
+    background-image: url(https://img.freepik.com/free-photo/particle-lines-futuristic-gradient-background_53876-104053.jpg);
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+h1{
+    padding-top: 70px;
+    font-size:70px;
+    font-family:cursive;
+    border-bottom: 5px solid;
+}
+
+.input{
+    background-color:rgba(255, 228, 196, 0.589);
+    padding: 20px;
+    width:500px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-around;
+    border-radius: 10px;
+}
+
+#text{
+    width: 350px;
+    height:40px;
+    border-radius: 10px;
+    text-indent: 10px;
+    display: flex;
+    padding-top:10px;
+    resize: none;
+}
+
+#add{
+    width:100px;
+    height:40px;
+    font-size: 20px;
+    background-color: rgba(103, 95, 172, 0.508);
+    border-radius: 10px;
+}
+li{
+    padding: 15px;
+    border-radius: 5px;
+}

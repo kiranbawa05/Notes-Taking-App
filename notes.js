@@ -5,18 +5,18 @@ const add=()=>{
 
     if (item=="") return;//base case
 
-    let now = new Date().toISOString();
+    let now = new Date().toLocaleString();
      
-    let tasks=JSON.parse(localStorage.getItem("tasks"))||[];
+    let tasks=JSON.parse(localStorage.getItem("notes"))||[];
 
     if(editIndex===-1){
-        tasks.push({"note":"item","dt":"now"});
+        tasks.push({note:item,dt:now});
     }
     else{
-        tasks[editIndex]={note:item,dt:now};
+        tasks[editIndex]={note:item,dt:new Date().toLocaleString()};
     }
 
-    localStorage.setItem("tasks",JSON.stringify(tasks));
+    localStorage.setItem("notes",JSON.stringify(tasks));
     display();
     input.value="";
 };
@@ -25,17 +25,17 @@ function display(){
     let list=document.getElementById("list");
     list.innerHTML="";
 
-    let tasks=JSON.parse(localStorage.getItem("tasks"))||[];
+    let tasks=JSON.parse(localStorage.getItem("notes"))||[];
     tasks.forEach((task,index)=>{
         let li=document.createElement("li");
-        li.textContent=task.name+"";
+        li.textContent=task.note+"";
 
 
         let liB=document.createElement("button");
-        liB.textContent=Delete;
+        liB.textContent="Delete";
 
         let liE=document.createElement("button");
-        liE.textContent=edit;
+        liE.textContent="edit";
 
         liB.onclick=function(){
             Delete(index);
@@ -43,7 +43,8 @@ function display(){
         liE.onclick=function(){
             Edit(index);
         }
-
+        let time = document.createElement("small");
+        time.textContent = task.dt;
         li.appendChild(time);
         li.appendChild(liE);
         li.appendChild(liB);
@@ -52,19 +53,17 @@ function display(){
     })
 }
 
-function Delete(){
-    let tasks = JSON.parse(localStorage.getItem("tasks"));
+function Delete(index){
+    let tasks = JSON.parse(localStorage.getItem("notes"));
     tasks.splice(index,1);
-    localStorage.setItem("tasks",JSON.stringify(tasks));
+    localStorage.setItem("notes",JSON.stringify(tasks));
     display();
 }
 
-function Edit(){
-    let tasks=JSON.parse(localStorage.getItem("tasks"));
+function Edit(index){
+    let tasks=JSON.parse(localStorage.getItem("notes"));
 
-    document.getElementById("text").value=tasks[index].name;
-    document.getElementById("dt").value=tasks[index].dt;
-
+    document.getElementById("text").value=tasks[index].note;
     editIndex=index;
 }
 window.onload=function(){
