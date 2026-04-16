@@ -33,9 +33,11 @@ function display(){
 
         let liB=document.createElement("button");
         liB.textContent="Delete";
+        liB.classList.add("del"); 
 
         let liE=document.createElement("button");
         liE.textContent="edit";
+        liE.classList.add("edit"); 
 
         liB.onclick=function(){
             Delete(index);

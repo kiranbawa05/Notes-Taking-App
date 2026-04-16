@@ -45,6 +45,21 @@ h1{
     border-radius: 10px;
 }
 li{
+    display: flex;
     padding: 15px;
     border-radius: 5px;
+    width:600px;
+    justify-content: space-between;
+    font-size: 22px;
+    background-color: rgba(240, 248, 255, 0.427);
+    margin-bottom: 10px;
+}
+.del{
+    width:50px;
+    font-size: 18 px;
+}
+.edit{
+    width:50px;
+    font-size: 18 px;
+
 }
