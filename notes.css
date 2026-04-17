@@ -48,18 +48,23 @@ li{
     display: flex;
     padding: 15px;
     border-radius: 5px;
-    width:600px;
     justify-content: space-between;
     font-size: 22px;
     background-color: rgba(240, 248, 255, 0.427);
     margin-bottom: 10px;
+    width: 1000px;
+    align-items: center;
 }
-.del{
-    width:50px;
-    font-size: 18 px;
+li div:last-child {
+    display: flex;
+    gap: 10px;
+    align-items: flex-end; /* right align */
 }
-.edit{
-    width:50px;
-    font-size: 18 px;
 
+.del, .edit{
+    width: 80px;
+    height: 30px;
+    font-size: 20px;
+    border-radius: 5px;
+    background-color: rgba(0, 0, 0, 0.138);
 }

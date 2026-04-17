@@ -28,16 +28,27 @@ function display(){
     let tasks=JSON.parse(localStorage.getItem("notes"))||[];
     tasks.forEach((task,index)=>{
         let li=document.createElement("li");
-        li.textContent=task.note+"";
 
+        let contents=document.createElement("div");
+
+        let text=document.createElement("p");
+        text.textContent=task.note;
+
+        let time=document.createElement("small");
+        time.textContent=task.dt;
+        contents.appendChild(text);
+        contents.appendChild(time);
+
+
+        let actions=document.createElement("div");
+
+        let liE=document.createElement("button");
+        liE.textContent="Edit";
+        liE.classList.add("edit");
 
         let liB=document.createElement("button");
         liB.textContent="Delete";
-        liB.classList.add("del"); 
-
-        let liE=document.createElement("button");
-        liE.textContent="edit";
-        liE.classList.add("edit"); 
+        liB.classList.add("del");
 
         liB.onclick=function(){
             Delete(index);
@@ -45,13 +56,15 @@ function display(){
         liE.onclick=function(){
             Edit(index);
         }
-        let time = document.createElement("small");
-        time.textContent = task.dt;
-        li.appendChild(time);
-        li.appendChild(liE);
-        li.appendChild(liB);
 
-        list.appendChild(li);
+        actions.appendChild(liE);
+        actions.appendChild(liB);
+
+        li.appendChild(contents);
+        li.appendChild(actions);
+
+        list.appendChild(li)
+
     })
 }
 
