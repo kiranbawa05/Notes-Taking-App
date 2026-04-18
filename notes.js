@@ -1,24 +1,48 @@
 let editIndex = -1;
 const add=()=>{
-    let input=document.getElementById("text");
+    let input=document.getElementById("note");
     let item=input.value;
 
-    if (item=="") return;//base case
+    let temp=document.getElementById("text");
+    let title=temp.value;
 
-    let now = new Date().toLocaleString();
+    if (item=="" && title=="") {
+        alert("Please enter a title and note");
+        return;//base case
+    }
+        let now = new Date().toLocaleDateString("en-IN", {
+        day: "2-digit",
+        month: "long",
+        year: "numeric"
+    });
      
     let tasks=JSON.parse(localStorage.getItem("notes"))||[];
 
     if(editIndex===-1){
-        tasks.push({note:item,dt:now});
+        tasks.push({
+            title:title,
+            note:item,
+            dt:now
+        });
     }
     else{
-        tasks[editIndex]={note:item,dt:new Date().toLocaleString()};
+        tasks[editIndex]={
+            title:title,
+            note:item,
+            dt:new Date().toLocaleDateString("en-IN", {
+                day: "2-digit",
+                month: "long",
+                year: "numeric"
+            })
+        }
     }
+
+    editIndex = -1;
 
     localStorage.setItem("notes",JSON.stringify(tasks));
     display();
     input.value="";
+    temp.value="";
 };
 
 function display(){
@@ -30,39 +54,59 @@ function display(){
         let li=document.createElement("li");
 
         let contents=document.createElement("div");
+        let head=document.createElement("div");
+        head.classList.add("head");
+        contents.classList.add("contents");
+
+//this has time, title and text note.
+        let time=document.createElement("small");
+        time.textContent=task.dt;
+        time.classList.add("time");
+
+        let title=document.createElement("p");
+        title.textContent=task.title;
+        title.classList.add("title");
 
         let text=document.createElement("p");
         text.textContent=task.note;
+        text.classList.add("note-text");
 
-        let time=document.createElement("small");
-        time.textContent=task.dt;
+//adding contents for top-most div in one list item
+        head.appendChild(title);
+        head.appendChild(time);
+//adding top-most div and text note in upper area of one list item
+        contents.appendChild(head);
         contents.appendChild(text);
-        contents.appendChild(time);
+        
 
-
+//bottom div of one list item
         let actions=document.createElement("div");
-
+        //edit button
         let liE=document.createElement("button");
-        liE.textContent="Edit";
+        liE.innerHTML=`<div class="icon">
+                                <i class="fa-regular fa-pen-to-square"></i>    
+                            </div>`;
         liE.classList.add("edit");
-
+        //delete buttton
         let liB=document.createElement("button");
-        liB.textContent="Delete";
+        liB.innerHTML=`<div class="icon">
+                                <i class="fa-regular fa-trash-can"></i>    
+                            </div>`;
         liB.classList.add("del");
-
+        //button functions
         liB.onclick=function(){
             Delete(index);
         }
         liE.onclick=function(){
             Edit(index);
         }
-
+//adding buttons in bottom-most div
         actions.appendChild(liE);
         actions.appendChild(liB);
-
+//adding all these things in one list item
         li.appendChild(contents);
         li.appendChild(actions);
-
+//adding all in the list
         list.appendChild(li)
 
     })
@@ -78,9 +122,14 @@ function Delete(index){
 function Edit(index){
     let tasks=JSON.parse(localStorage.getItem("notes"));
 
-    document.getElementById("text").value=tasks[index].note;
+    document.getElementById("text").value=tasks[index].title;
+    document.getElementById("note").value=tasks[index].note;
     editIndex=index;
 }
+
 window.onload=function(){
     display();
 };
+
+
+

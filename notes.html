@@ -5,20 +5,30 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Notes</title>
     <link rel="stylesheet" href="notes.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 </head>
 <body>
-    <H1>My Notebook</H1>
-    <br>
-    <br>
+    <header>
+        <H1>My Notebook</H1>
+    </header>
     <div class="input">
-        <textarea id="text" placeholder="Enter your notes here"></textarea>
-        <button id="add" onclick="add()" type="submit">Add</button>
+        <input id="text" type="text" placeholder="Title">
+        <textarea id="note" placeholder="Enter your notes here"></textarea>
+        <div class="add">
+            <button id="add" onclick="add()" type="submit"><i class="fa-solid fa-plus"></i></button>
+        </div>
     </div>
+    
     <br>
     <br>
-    <div >
+    <div id="ul">
         <ul id="list"></ul>
     </div>
     <script src="notes.js"></script>
+    <br>
+    
+    <footer>
+        <p>© 2026 My Notebook. All rights reserved.</p>
+    </footer>
 </body>
 </html>

@@ -1,0 +1,14 @@
+*{
+    padding:0;
+    Margin:0;
+}
+img{
+    height: 70px;
+    align-self: start;
+}
+header{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
